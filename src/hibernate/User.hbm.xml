@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.User" table="user" catalog="parkinglot">
+        <id name="userId" type="java.lang.Integer">
+            <column name="User_id" />
+            <generator class="identity" />
+        </id>
+        <property name="userName" type="string">
+            <column name="User_Name" length="20" not-null="true" />
+        </property>
+        <property name="userPassword" type="string">
+            <column name="User_Password" length="20" not-null="true" />
+        </property>
+        <property name="userNickname" type="string">
+            <column name="User_Nickname" length="20" />
+        </property>
+        <property name="userPhoto" type="string">
+            <column name="User_Photo" length="30" />
+        </property>
+        <property name="userGender" type="string">
+            <column name="User_Gender" length="1" />
+        </property>
+        <property name="userSigndate" type="timestamp">
+            <column name="User_Signdate" length="0" not-null="true" />
+        </property>
+        <property name="userMail" type="string">
+            <column name="User_Mail" length="20" />
+        </property>
+        <property name="userPhonenum" type="string">
+            <column name="User_Phonenum" length="11" />
+        </property>
+        <set name="cars" table="car" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Car_Userid" />
+            </key>
+            <one-to-many class="hibernate.Car" />
+        </set>
+        <set name="usercreditnums" table="usercreditnum" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserCreditNum_Userid" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Usercreditnum" />
+        </set>
+        <set name="rentforms" table="rentform" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="RentForm_Userid" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Rentform" />
+        </set>
+        <set name="bookforms" table="bookform" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BookForm_Userid" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Bookform" />
+        </set>
+    </class>
+</hibernate-mapping>

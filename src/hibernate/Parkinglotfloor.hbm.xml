@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Parkinglotfloor" table="parkinglotfloor" catalog="parkinglot">
+        <composite-id name="id" class="hibernate.ParkinglotfloorId">
+            <key-property name="parkingLotFloorId" type="int">
+                <column name="ParkingLotFloor_id" />
+            </key-property>
+            <key-property name="parkingLotFloorLotid" type="int">
+                <column name="ParkingLotFloor_Lotid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="parkinglot" class="hibernate.Parkinglot" update="false" insert="false" fetch="select">
+            <column name="ParkingLotFloor_Lotid" not-null="true" />
+        </many-to-one>
+        <property name="parkingLotFloorSizedx" type="java.lang.Integer">
+            <column name="ParkingLotFloor_sizedx" />
+        </property>
+        <property name="parkingLotFloorSizedy" type="java.lang.Integer">
+            <column name="ParkingLotFloor_sizedy" />
+        </property>
+        <property name="parkingLotFloorNumber" type="java.lang.Integer">
+            <column name="ParkingLotFloor_number" />
+        </property>
+        <set name="parkingsets" table="parkingset" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ParkingSet_Lotid" not-null="true" />
+                <column name="ParkingSet_Floorid" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Parkingset" />
+        </set>
+    </class>
+</hibernate-mapping>

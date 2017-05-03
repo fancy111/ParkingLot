@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Strategy" table="strategy" catalog="parkinglot">
+        <id name="strategyId" type="int">
+            <column name="Strategy_id" />
+            <generator class="foreign">
+                <param name="property">parkinglot</param>
+            </generator>
+        </id>
+        <many-to-one name="administrator" class="hibernate.Administrator" fetch="select">
+            <column name="Strategy_Administratorid" />
+        </many-to-one>
+        <one-to-one name="parkinglot" class="hibernate.Parkinglot" constrained="true"></one-to-one>
+        <property name="strategyFee" type="java.lang.Long">
+            <column name="Strategy_Fee" precision="10" scale="0" />
+        </property>
+        <property name="strategyLate" type="java.lang.Long">
+            <column name="Strategy_Late" precision="10" scale="0" />
+        </property>
+        <property name="strategyOverstay" type="java.lang.Long">
+            <column name="Strategy_Overstay" precision="10" scale="0" />
+        </property>
+        <property name="strategyMiss" type="java.lang.Long">
+            <column name="Strategy_Miss" precision="10" scale="0" />
+        </property>
+        <property name="strategyOverrate" type="java.lang.Long">
+            <column name="Strategy_overrate" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

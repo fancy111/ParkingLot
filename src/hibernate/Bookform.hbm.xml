@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Bookform" table="bookform" catalog="parkinglot">
+        <id name="bookFormId" type="string">
+            <column name="BookForm_id" length="12" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="parkinglot" class="hibernate.Parkinglot" fetch="select">
+            <column name="BookForm_ParkingLotid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="hibernate.User" fetch="select">
+            <column name="BookForm_Userid" not-null="true" />
+        </many-to-one>
+        <property name="bookFormFee" type="java.lang.Integer">
+            <column name="BookForm_Fee" />
+        </property>
+        <property name="bookFormPayState" type="java.lang.Integer">
+            <column name="BookForm_PayState" />
+        </property>
+        <property name="bookFormBookDate" type="timestamp">
+            <column name="BookForm_BookDate" length="0" />
+        </property>
+        <property name="bookFormStartTime" type="timestamp">
+            <column name="BookForm_StartTime" length="0" />
+        </property>
+        <property name="bookFormEndTime" type="timestamp">
+            <column name="BookForm_EndTime" length="0" />
+        </property>
+        <property name="bookFormFine" type="java.lang.Integer">
+            <column name="BookForm_Fine" />
+        </property>
+        <property name="bookFormFineType" type="java.lang.Integer">
+            <column name="BookForm_FineType" />
+        </property>
+        <property name="bookFormLeaveTime" type="timestamp">
+            <column name="BookForm_LeaveTime" length="0" />
+        </property>
+        <property name="bookFormArriveTime" type="timestamp">
+            <column name="BookForm_ArriveTime" length="0" />
+        </property>
+        <property name="bookFormCarNumber" type="string">
+            <column name="BookForm_CarNumber" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>

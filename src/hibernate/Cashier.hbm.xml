@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Cashier" table="cashier" catalog="parkinglot">
+        <id name="cashierId" type="int">
+            <column name="Cashier_id" />
+            <generator class="foreign">
+                <param name="property">worker</param>
+            </generator>
+        </id>
+        <one-to-one name="worker" class="hibernate.Worker" constrained="true"></one-to-one>
+        <set name="outlays" table="outlay" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Outlay_Workerid" />
+            </key>
+            <one-to-many class="hibernate.Outlay" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Device" table="device" catalog="parkinglot">
+        <id name="deviceId" type="java.lang.Integer">
+            <column name="Device_id" />
+            <generator class="identity" />
+        </id>
+        <property name="devicePlace" type="string">
+            <column name="Device_Place" length="10" />
+        </property>
+        <property name="deviceName" type="string">
+            <column name="Device_Name" length="10" />
+        </property>
+        <property name="deviceMaintainDate" type="timestamp">
+            <column name="Device_MaintainDate" length="0" />
+        </property>
+        <set name="maintainers" table="maintain" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Maintain_Deviceid" not-null="true" />
+            </key>
+            <many-to-many entity-name="hibernate.Maintainer">
+                <column name="Maintainer_Workerid" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

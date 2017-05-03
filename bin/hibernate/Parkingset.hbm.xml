@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Parkingset" table="parkingset" catalog="parkinglot">
+        <composite-id name="id" class="hibernate.ParkingsetId">
+            <key-property name="parkingSetLotid" type="int">
+                <column name="ParkingSet_Lotid" />
+            </key-property>
+            <key-property name="parkingSetFloorid" type="int">
+                <column name="ParkingSet_Floorid" />
+            </key-property>
+            <key-property name="parkingSetId" type="int">
+                <column name="ParkingSet_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="parkinglotfloor" class="hibernate.Parkinglotfloor" update="false" insert="false" fetch="select">
+            <column name="ParkingSet_Lotid" not-null="true" />
+            <column name="ParkingSet_Floorid" not-null="true" />
+        </many-to-one>
+        <property name="parkingSetLocationdx" type="java.lang.Integer">
+            <column name="ParkingSet_Locationdx" />
+        </property>
+        <property name="parkingSetLocationdy" type="java.lang.Integer">
+            <column name="ParkingSet_Locationdy" />
+        </property>
+        <property name="parkingSetStatus" type="java.lang.Integer">
+            <column name="ParkingSet_Status" />
+        </property>
+        <property name="parkingSetBookFormId" type="string">
+            <column name="ParkingSet_BookFormID" length="12" />
+        </property>
+    </class>
+</hibernate-mapping>

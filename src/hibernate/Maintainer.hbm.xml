@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Maintainer" table="maintainer" catalog="parkinglot">
+        <id name="maintainerId" type="int">
+            <column name="Maintainer_id" />
+            <generator class="foreign">
+                <param name="property">worker</param>
+            </generator>
+        </id>
+        <one-to-one name="worker" class="hibernate.Worker" constrained="true"></one-to-one>
+        <set name="devices" table="maintain" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="Maintainer_Workerid" not-null="true" />
+            </key>
+            <many-to-many entity-name="hibernate.Device">
+                <column name="Maintain_Deviceid" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Bookdecomp" table="bookdecomp" catalog="parkinglot">
+        <id name="bookDecompId" type="string">
+            <column name="BookDecomp_id" length="12" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="rentform" class="hibernate.Rentform" fetch="select">
+            <column name="BookDecomp_Rentid" length="12" not-null="true" />
+        </many-to-one>
+        <property name="bookDecompDate" type="date">
+            <column name="BookDecomp_Date" length="0" />
+        </property>
+        <property name="bookDecompFine" type="java.lang.Integer">
+            <column name="BookDecomp_Fine" />
+        </property>
+        <property name="bookDecompStartTime" type="timestamp">
+            <column name="BookDecomp_StartTime" length="0" />
+        </property>
+        <property name="bookDecompEndTime" type="timestamp">
+            <column name="BookDecomp_EndTime" length="0" />
+        </property>
+        <property name="bookDecompPayStatus" type="java.lang.Integer">
+            <column name="BookDecomp_PayStatus" />
+        </property>
+        <property name="bookDecompFineType" type="java.lang.Integer">
+            <column name="BookDecomp_FineType" />
+        </property>
+        <property name="bookDecompLeaveTime" type="timestamp">
+            <column name="BookDecomp_LeaveTime" length="0" />
+        </property>
+        <property name="bookDecompArriveTime" type="timestamp">
+            <column name="BookDecomp_ArriveTime" length="0" />
+        </property>
+        <property name="bookDecompCarNumber" type="string">
+            <column name="BookDecomp_CarNumber" length="8" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Outlay" table="outlay" catalog="parkinglot">
+        <id name="outlayId" type="java.lang.Integer">
+            <column name="Outlay_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cashier" class="hibernate.Cashier" fetch="select">
+            <column name="Outlay_Workerid" />
+        </many-to-one>
+        <many-to-one name="parkinglot" class="hibernate.Parkinglot" fetch="select">
+            <column name="Outlay_Parkinglotid" not-null="true" />
+        </many-to-one>
+        <property name="outlayFormNum" type="java.lang.Integer">
+            <column name="Outlay_FormNum" />
+        </property>
+        <property name="outlayMatter" type="string">
+            <column name="Outlay_Matter" length="50" />
+        </property>
+        <property name="outlayFee" type="java.lang.Long">
+            <column name="Outlay_Fee" precision="10" scale="0" />
+        </property>
+        <property name="outlayDate" type="timestamp">
+            <column name="Outlay_Date" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

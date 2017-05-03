@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Usercreditnum" table="usercreditnum" catalog="parkinglot">
+        <composite-id name="id" class="hibernate.UsercreditnumId">
+            <key-property name="userCreditNumCreditnum" type="string">
+                <column name="UserCreditNum_Creditnum" length="30" />
+            </key-property>
+            <key-property name="userCreditNumUserid" type="int">
+                <column name="UserCreditNum_Userid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="hibernate.User" update="false" insert="false" fetch="select">
+            <column name="UserCreditNum_Userid" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

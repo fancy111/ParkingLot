@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Parking" table="parking" catalog="parkinglot">
+        <composite-id name="id" class="hibernate.ParkingId">
+            <key-property name="parkingBookid" type="string">
+                <column name="Parking_Bookid" length="12" />
+            </key-property>
+            <key-property name="parkingBehavior" type="java.lang.Integer">
+                <column name="Parking_Behavior" />
+            </key-property>
+            <key-property name="parkingFine" type="java.lang.Integer">
+                <column name="Parking_Fine" />
+            </key-property>
+            <key-property name="parkingArriveTime" type="timestamp">
+                <column name="Parking_ArriveTime" length="0" />
+            </key-property>
+            <key-property name="parkingLeaveTime" type="timestamp">
+                <column name="Parking_LeaveTime" length="0" />
+            </key-property>
+            <key-property name="parkingBookStart" type="timestamp">
+                <column name="Parking_BookStart" length="0" />
+            </key-property>
+            <key-property name="parkingBookEnd" type="timestamp">
+                <column name="Parking_BookEnd" length="0" />
+            </key-property>
+            <key-property name="parkingCarNumber" type="string">
+                <column name="Parking_CarNumber" length="8" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

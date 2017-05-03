@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Car" table="car" catalog="parkinglot">
+        <id name="carId" type="java.lang.Integer">
+            <column name="Car_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="hibernate.User" fetch="select">
+            <column name="Car_Userid" />
+        </many-to-one>
+        <property name="carPlatenum" type="string">
+            <column name="Car_Platenum" length="8" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

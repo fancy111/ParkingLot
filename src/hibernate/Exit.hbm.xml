@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Exit" table="_exit" catalog="parkinglot">
+        <id name="exitParkingLotid" type="int">
+            <column name="Exit_ParkingLotid" />
+            <generator class="foreign">
+                <param name="property">parkinglot</param>
+            </generator>
+        </id>
+        <one-to-one name="parkinglot" class="hibernate.Parkinglot" constrained="true"></one-to-one>
+        <property name="exitCarNumber" type="string">
+            <column name="Exit_CarNumber" length="8" />
+        </property>
+        <property name="exitFlag" type="java.lang.Integer">
+            <column name="Exit_Flag" />
+        </property>
+        <property name="exitTime" type="timestamp">
+            <column name="Exit_Time" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

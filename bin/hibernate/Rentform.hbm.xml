@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Rentform" table="rentform" catalog="parkinglot">
+        <id name="rentFormId" type="string">
+            <column name="RentForm_id" length="12" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="parkinglot" class="hibernate.Parkinglot" fetch="select">
+            <column name="RentForm_ParkingLotid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="hibernate.User" fetch="select">
+            <column name="RentForm_Userid" not-null="true" />
+        </many-to-one>
+        <property name="rentFormFee" type="java.lang.Integer">
+            <column name="RentForm_Fee" />
+        </property>
+        <property name="rentFormStartDate" type="date">
+            <column name="RentForm_StartDate" length="0" />
+        </property>
+        <property name="rentFormEndDate" type="date">
+            <column name="RentForm_EndDate" length="0" />
+        </property>
+        <property name="rentFormStartTime" type="timestamp">
+            <column name="RentForm_StartTime" length="0" />
+        </property>
+        <property name="rentFormEndTime" type="timestamp">
+            <column name="RentForm_EndTime" length="0" />
+        </property>
+        <property name="rentFormBookDate" type="timestamp">
+            <column name="RentForm_BookDate" length="0" />
+        </property>
+        <property name="rentFormPayStatus" type="java.lang.Integer">
+            <column name="RentForm_PayStatus" />
+        </property>
+        <set name="bookdecomps" table="bookdecomp" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BookDecomp_Rentid" length="12" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.Bookdecomp" />
+        </set>
+    </class>
+</hibernate-mapping>

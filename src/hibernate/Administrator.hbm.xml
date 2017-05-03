@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Administrator" table="administrator" catalog="parkinglot">
+        <id name="administratorId" type="int">
+            <column name="Administrator_id" />
+            <generator class="foreign">
+                <param name="property">worker</param>
+            </generator>
+        </id>
+        <one-to-one name="worker" class="hibernate.Worker" constrained="true"></one-to-one>
+        <set name="strategies" table="strategy" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Strategy_Administratorid" />
+            </key>
+            <one-to-many class="hibernate.Strategy" />
+        </set>
+    </class>
+</hibernate-mapping>

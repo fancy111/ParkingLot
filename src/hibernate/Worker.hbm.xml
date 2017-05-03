@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Worker" table="worker" catalog="parkinglot">
+        <id name="workerId" type="int">
+            <column name="Worker_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="workerGender" type="string">
+            <column name="Worker_Gender" length="2" />
+        </property>
+        <property name="workerName" type="string">
+            <column name="Worker_Name" length="10" />
+        </property>
+        <property name="workerPhoneNum" type="string">
+            <column name="Worker_PhoneNum" length="11" />
+        </property>
+        <property name="workerJob" type="string">
+            <column name="Worker_Job" length="10" />
+        </property>
+        <property name="workerDepartment" type="string">
+            <column name="Worker_Department" length="10" />
+        </property>
+        <one-to-one name="administrator" class="hibernate.Administrator"></one-to-one>
+        <one-to-one name="maintainer" class="hibernate.Maintainer"></one-to-one>
+        <one-to-one name="cashier" class="hibernate.Cashier"></one-to-one>
+    </class>
+</hibernate-mapping>
