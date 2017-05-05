@@ -1,5 +1,7 @@
 package com.etc.Dao;
 
+import java.util.List;
+
 import hibernate.Car;
 import hibernate.User;
 
@@ -11,7 +13,11 @@ public interface CarDao extends BaseDao<Car>
 	public Car addCar(int userID,String Car_PlateNum);
 	public Car addCar(User user,String Car_PlateNum);
 	
-	public Car deleteCar(int userID,String Car_PlateNum);
-	public Car deleteCar(User user,String Car_PateNum);
+	public boolean deleteCar(int userID,String Car_PlateNum);
+	public boolean deleteCar(User user,String Car_PateNum);
+	
+	//后来添加的方法
+	public List<Car> getAllCar(User user);
+	public List<Car> getAllCar(String userId);
 	
 }

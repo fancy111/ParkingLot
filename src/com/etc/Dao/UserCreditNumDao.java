@@ -5,10 +5,10 @@ import hibernate.Usercreditnum;
 
 public interface UserCreditNumDao extends BaseDao<Usercreditnum>
 {
-	public Usercreditnum addCredit(int userID,String Creditnumber);
-	public Usercreditnum addCredit(User user,String Creditnumber);
+	public boolean addCredit(int userID,String Creditnumber);
+	public boolean addCredit(User user,String Creditnumber);
 	
-	public Usercreditnum deleteCredit(int userID,String Creditnum);
-	public Usercreditnum deleteCredit(User user,String creditnum);
+	public boolean deleteCredit(int userID,String Creditnum);
+	public boolean deleteCredit(User user,String creditnum);
 
 }

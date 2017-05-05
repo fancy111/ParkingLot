@@ -11,15 +11,15 @@ import hibernate.Usercreditnum;
 
 public interface UserDao extends BaseDao<User>
 {
-	public User userLogin(String phoneNumber,String password);
+	public User userLogin(String username,String password);
 	
-	public User userRegister(String phoneNumber,String password);
+	public User userRegister(User user);
 	
-	public User userSetPassWord(int UserID,String password);
-	public User userSetPassWord(User user,String password);
+	public boolean userSetPassWord(int UserID,String password);
+	public boolean userSetPassWord(User user,String password);
 	
-	public User userChangePhoto(User user,URI url);
-	public User userChangePhoto(int UserID,URI url);
+	public boolean userChangePhoto(User user,URI url);
+	public boolean userChangePhoto(int UserID,URI url);
 	
 	public List<Usercreditnum> userCheckCredit(User user);
 	public List<Usercreditnum> userCheckCredit(int Userid);
@@ -32,12 +32,15 @@ public interface UserDao extends BaseDao<User>
 	
 	public List<Car> userCheckCar(User user);
 	public List<Car> userCheckCar(int userid);
-	//in OrderService
-	public List<Bookform> userbookCheck(User user,int status);
-	public List<Bookform> userbookCheck(int userid,int status);
 	
-	public List<Rentform> userrentCheck(User user,int status);
-	public List<Rentform> userrentCheck(int userid,int status);
+//	//in OrderService
+//	public List<Bookform> userbookCheck(User user,int status);
+//	public List<Bookform> userbookCheck(int userid,int status);
+//	
+//	public List<Rentform> userrentCheck(User user,int status);
+//	public List<Rentform> userrentCheck(int userid,int status);
+
+	User inUserList(String username);
 	
 	
 }

@@ -7,7 +7,7 @@ import hibernate.Strategy;
 public interface StrategyDao extends BaseDao<Strategy>
 {
 	//in BookService
-	public double getParkingFee(Date StartTime,Date endTime);
+	public long getParkingFee(Date StartTime,Date endTime,int parkingLotID);
 	//in outlayService
 	public Strategy getStaregy(int parkinglotid);
 }

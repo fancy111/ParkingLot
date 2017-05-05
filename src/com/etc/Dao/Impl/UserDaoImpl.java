@@ -1,6 +1,8 @@
 package com.etc.Dao.Impl;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.etc.Dao.UserDao;
@@ -15,121 +17,218 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 {
 
 	/**
+	 * 用户是否存在
+	 * @param username 用户名
+	 * @return 相应的用户对象,若没有则为null
+	 */
+	@Override
+	public User inUserList(String username) {
+		String where="where User_Name = ? ";
+		List<User> users=this.loadListEntitys(where,username);
+		if (users.isEmpty()) 
+			return null;
+		return users.get(0);
+	}
+	
+	/**
+	 * 用户登录
 	 * @param phoneNumber 用户注册的电话
 	 * @param password 密码
 	 * @return 相应的用户对象,若没有则为null
 	 */
 	@Override
-	public User userLogin(String phoneNumber, String password) {
-		String where = "where User_Phonenum=? and User_Password=?";
-		List<User> userList = this.loadList(where, phoneNumber,password);
+	public User userLogin(String username, String password) {
+		String where = "where User_Name=? and User_Password=?";
+		List<User> userList = this.loadListEntitys(where, username,password);
 		if(userList.size() > 0)
 			return userList.get(0);
 		return null;
 	}
 
+	/**
+	 * 用户注册
+	 * @param user 用户对象
+	 * @return 相应的用户对象,若没有则为null
+	 */
 	@Override
-	public User userRegister(String phoneNumber, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public User userRegister(User user) {
+		//若用户已存在
+		if (this.inUserList(user.getUserName()) != null) 
+			return null;
+		this.saveEntity(user);
+		return user;
 	}
 
+	/**
+	 * 用户设置密码
+	 * @param UserID 用户id
+	 * @param password 新密码
+	 * @return 成功否
+	 */
 	@Override
-	public User userSetPassWord(int UserID, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean userSetPassWord(int UserID, String password) {
+		User user = this.loadEntity(UserID);
+		return this.userSetPassWord(user, password);
+	}
+	
+	/**
+	 * 用户设置密码
+	 * @param user 用户对象
+	 * @param password 新密码
+	 * @return 成功否
+	 */
+	@Override
+	public boolean userSetPassWord(User user, String password) {
+		user.setUserPassword(password);
+		return this.saveEntity(user);
 	}
 
+	/**
+	 * 用户设置头像
+	 * @param user 用户
+	 * @param url 头像url
+	 * @return 成功否
+	 */
 	@Override
-	public User userSetPassWord(User user, String password) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean userChangePhoto(User user, URI url) {
+		user.setUserPhoto(url.toString());
+		return this.saveEntity(user);
 	}
 
+	/**
+	 * 用户设置头像
+	 * @param user 用户
+	 * @param url 头像url
+	 * @return 成功否
+	 */
 	@Override
-	public User userChangePhoto(User user, URI url) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean userChangePhoto(int UserID, URI url) {
+		User user = this.loadEntity(UserID);
+		return this.userChangePhoto(user, url);
 	}
 
-	@Override
-	public User userChangePhoto(int UserID, URI url) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	/**
+	 * 用户获取银行卡信息
+	 * @param user 用户
+	 * @return 银行卡列表
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Usercreditnum> userCheckCredit(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		if(user == null)
+			return null;
+		Iterator<Usercreditnum> iterator=user.getUsercreditnums().iterator();
+		List<Usercreditnum> list=new ArrayList<Usercreditnum>();
+		while (iterator.hasNext())
+		{
+			Usercreditnum usercreditnum=(Usercreditnum)iterator.next();
+			list.add(usercreditnum);
+		}
+		return list;
 	}
 
+	/**
+	 * 用户获取银行卡信息
+	 * @param Userid 用户id
+	 * @return 银行卡列表
+	 */
 	@Override
 	public List<Usercreditnum> userCheckCredit(int Userid) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = this.loadEntity(Userid);
+		return this.userCheckCredit(user);
 	}
 
-	
-
+	/**
+	 * 用户获取车辆信息
+	 * @param user 用户
+	 * @return 车辆列表
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Car> userCheckCar(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		if(user == null)
+			return null;
+		Iterator<Car> iterator=user.getCars().iterator();
+		List<Car> list=new ArrayList<Car>();
+		while (iterator.hasNext())
+		{
+			Car car=(Car)iterator.next();
+			list.add(car);
+		}
+		return list;
 	}
 
+	/**
+	 * 用户获取车辆信息
+	 * @param user 用户id
+	 * @return 车辆列表
+	 */
 	@Override
 	public List<Car> userCheckCar(int userid) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = this.loadEntity(userid);
+		return this.userCheckCar(user);
 	}
 
+	/**
+	 * 用户获取预约订单
+	 * @param user 用户
+	 * @return 预约订单列表
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Bookform> userGetAllBookForm(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		if(user == null)
+			return null;
+		Iterator<Bookform> iterator=user.getBookforms().iterator();
+		List<Bookform> list=new ArrayList<Bookform>();
+		while (iterator.hasNext())
+		{
+			Bookform bookform=(Bookform)iterator.next();
+			list.add(bookform);
+		}
+		return list;
 	}
 
+	/**
+	 * 用户获取预约订单
+	 * @param userid 用户id
+	 * @return 预约订单列表
+	 */
 	@Override
 	public List<Bookform> userGetAllBookForm(int userid) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = this.loadEntity(userid);
+		return this.userGetAllBookForm(user);
 	}
 
+	/**
+	 * 用户获取预约订单
+	 * @param user 用户
+	 * @return 长期租用订单列表
+	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Rentform> userGetAllRentForm(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		if(user == null)
+			return null;
+		Iterator<Rentform> iterator=user.getRentforms().iterator();
+		List<Rentform> list=new ArrayList<Rentform>();
+		while (iterator.hasNext())
+		{
+			Rentform rentform=(Rentform)iterator.next();
+			list.add(rentform);
+		}
+		return list;
 	}
 
+	/**
+	 * 用户获取预约订单
+	 * @param userid 用户id
+	 * @return 长期租用订单列表
+	 */
 	@Override
 	public List<Rentform> userGetAllRentForm(int userid) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Bookform> userbookCheck(User user, int status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Bookform> userbookCheck(int userid, int status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Rentform> userrentCheck(User user, int status) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Rentform> userrentCheck(int userid, int status) {
-		// TODO Auto-generated method stub
-		return null;
+		User user = this.loadEntity(userid);
+		return this.userGetAllRentForm(user);
 	}
 
 }
