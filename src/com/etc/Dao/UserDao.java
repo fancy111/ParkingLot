@@ -11,7 +11,7 @@ import hibernate.Usercreditnum;
 
 public interface UserDao extends BaseDao<User>
 {
-	public User userLogin(String username,String password);
+	public User userLogin(String phone,String password);
 	
 	public User userRegister(User user);
 	
@@ -40,7 +40,7 @@ public interface UserDao extends BaseDao<User>
 //	public List<Rentform> userrentCheck(User user,int status);
 //	public List<Rentform> userrentCheck(int userid,int status);
 
-	User inUserList(String username);
+	User inUserList(String phone);
 	
 	
 }

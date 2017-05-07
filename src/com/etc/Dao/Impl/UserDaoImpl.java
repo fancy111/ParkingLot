@@ -2,6 +2,7 @@ package com.etc.Dao.Impl;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,9 +23,9 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 	 * @return 相应的用户对象,若没有则为null
 	 */
 	@Override
-	public User inUserList(String username) {
-		String where="where User_Name = ? ";
-		List<User> users=this.loadListEntitys(where,username);
+	public User inUserList(String phone) {
+		String where="where User_Phonenum = ? ";
+		List<User> users=this.loadListEntitys(where,phone);
 		if (users.isEmpty()) 
 			return null;
 		return users.get(0);
@@ -37,9 +38,9 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 	 * @return 相应的用户对象,若没有则为null
 	 */
 	@Override
-	public User userLogin(String username, String password) {
-		String where = "where User_Name=? and User_Password=?";
-		List<User> userList = this.loadListEntitys(where, username,password);
+	public User userLogin(String phone, String password) {
+		String where = "where User_Phonenum=? and User_Password=?";
+		List<User> userList = this.loadListEntitys(where, phone,password);
 		if(userList.size() > 0)
 			return userList.get(0);
 		return null;
@@ -53,8 +54,9 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 	@Override
 	public User userRegister(User user) {
 		//若用户已存在
-		if (this.inUserList(user.getUserName()) != null) 
+		if (this.inUserList(user.getUserPhonenum()) != null) 
 			return null;
+		user.setUserSigndate(new Date());
 		this.saveEntity(user);
 		return user;
 	}
@@ -79,8 +81,9 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 	 */
 	@Override
 	public boolean userSetPassWord(User user, String password) {
+		user = this.loadEntity(user.getUserId());
 		user.setUserPassword(password);
-		return this.saveEntity(user);
+		return this.updateEntity(user);
 	}
 
 	/**
@@ -135,7 +138,14 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao
 	@Override
 	public List<Usercreditnum> userCheckCredit(int Userid) {
 		User user = this.loadEntity(Userid);
-		return this.userCheckCredit(user);
+		Iterator<Usercreditnum> iterator=user.getUsercreditnums().iterator();
+		List<Usercreditnum> list=new ArrayList<Usercreditnum>();
+		while (iterator.hasNext())
+		{
+			Usercreditnum usercreditnum=(Usercreditnum)iterator.next();
+			list.add(usercreditnum);
+		}
+		return list;
 	}
 
 	/**

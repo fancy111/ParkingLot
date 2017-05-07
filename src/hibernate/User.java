@@ -1,5 +1,5 @@
 package hibernate;
-// Generated 2017-4-26 14:48:25 by Hibernate Tools 3.5.0.Final
+// Generated 2017-5-7 13:38:56 by Hibernate Tools 3.5.0.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -11,14 +11,13 @@ import java.util.Set;
 public class User implements java.io.Serializable {
 
 	private Integer userId;
-	private String userName;
+	private String userPhonenum;
 	private String userPassword;
-	private String userNickname;
+	private String userName;
 	private String userPhoto;
 	private String userGender;
 	private Date userSigndate;
 	private String userMail;
-	private String userPhonenum;
 	private Set cars = new HashSet(0);
 	private Set usercreditnums = new HashSet(0);
 	private Set rentforms = new HashSet(0);
@@ -27,23 +26,21 @@ public class User implements java.io.Serializable {
 	public User() {
 	}
 
-	public User(String userName, String userPassword, Date userSigndate) {
-		this.userName = userName;
+	public User(String userPhonenum, String userPassword, Date userSigndate) {
+		this.userPhonenum = userPhonenum;
 		this.userPassword = userPassword;
 		this.userSigndate = userSigndate;
 	}
 
-	public User(String userName, String userPassword, String userNickname, String userPhoto, String userGender,
-			Date userSigndate, String userMail, String userPhonenum, Set cars, Set usercreditnums, Set rentforms,
-			Set bookforms) {
-		this.userName = userName;
+	public User(String userPhonenum, String userPassword, String userName, String userPhoto, String userGender,
+			Date userSigndate, String userMail, Set cars, Set usercreditnums, Set rentforms, Set bookforms) {
+		this.userPhonenum = userPhonenum;
 		this.userPassword = userPassword;
-		this.userNickname = userNickname;
+		this.userName = userName;
 		this.userPhoto = userPhoto;
 		this.userGender = userGender;
 		this.userSigndate = userSigndate;
 		this.userMail = userMail;
-		this.userPhonenum = userPhonenum;
 		this.cars = cars;
 		this.usercreditnums = usercreditnums;
 		this.rentforms = rentforms;
@@ -58,12 +55,12 @@ public class User implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return this.userName;
+	public String getUserPhonenum() {
+		return this.userPhonenum;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserPhonenum(String userPhonenum) {
+		this.userPhonenum = userPhonenum;
 	}
 
 	public String getUserPassword() {
@@ -74,12 +71,12 @@ public class User implements java.io.Serializable {
 		this.userPassword = userPassword;
 	}
 
-	public String getUserNickname() {
-		return this.userNickname;
+	public String getUserName() {
+		return this.userName;
 	}
 
-	public void setUserNickname(String userNickname) {
-		this.userNickname = userNickname;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getUserPhoto() {
@@ -112,14 +109,6 @@ public class User implements java.io.Serializable {
 
 	public void setUserMail(String userMail) {
 		this.userMail = userMail;
-	}
-
-	public String getUserPhonenum() {
-		return this.userPhonenum;
-	}
-
-	public void setUserPhonenum(String userPhonenum) {
-		this.userPhonenum = userPhonenum;
 	}
 
 	public Set getCars() {

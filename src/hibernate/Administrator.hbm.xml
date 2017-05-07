@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-5-7 13:38:57 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="hibernate.Administrator" table="administrator" catalog="parkinglot">
         <id name="administratorId" type="int">
@@ -11,7 +11,13 @@
             </generator>
         </id>
         <one-to-one name="worker" class="hibernate.Worker" constrained="true"></one-to-one>
-        <set name="strategies" table="strategy" inverse="true" lazy="true" fetch="select">
+        <property name="administratorUsername" type="string">
+            <column name="Administrator_username" length="20" not-null="true" />
+        </property>
+        <property name="administratorPassword" type="string">
+            <column name="Administrator_password" length="20" not-null="true" />
+        </property>
+        <set name="strategies" table="strategy" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="Strategy_Administratorid" />
             </key>

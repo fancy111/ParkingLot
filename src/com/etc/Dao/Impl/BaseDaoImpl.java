@@ -218,7 +218,7 @@ public class BaseDaoImpl<T> implements BaseDao<T>
 			if(!session.isConnected())
 				session = HibernateUtil.getSessionFactory().openSession();
 			//创建query
-			Query query = session.createQuery("from" + entityClass.getSimpleName() + " " + where);
+			Query query = session.createQuery("from " + entityClass.getSimpleName() + " " + where);
 			//设置查询语句的参数
 			for (int i=0;i<params.length;i++)
 			{

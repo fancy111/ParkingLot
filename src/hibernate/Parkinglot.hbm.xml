@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2017-4-26 14:48:26 by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 2017-5-7 13:38:57 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="hibernate.Parkinglot" table="parkinglot" catalog="parkinglot">
         <id name="parkingLotId" type="java.lang.Integer">
@@ -15,25 +15,25 @@
             <column name="ParkingLot_Location" length="30" />
         </property>
         <one-to-one name="exit" class="hibernate.Exit"></one-to-one>
-        <set name="outlays" table="outlay" inverse="true" lazy="true" fetch="select">
+        <set name="outlays" table="outlay" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="Outlay_Parkinglotid" not-null="true" />
             </key>
             <one-to-many class="hibernate.Outlay" />
         </set>
-        <set name="bookforms" table="bookform" inverse="true" lazy="true" fetch="select">
+        <set name="bookforms" table="bookform" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="BookForm_ParkingLotid" not-null="true" />
             </key>
             <one-to-many class="hibernate.Bookform" />
         </set>
-        <set name="parkinglotfloors" table="parkinglotfloor" inverse="true" lazy="true" fetch="select">
+        <set name="parkinglotfloors" table="parkinglotfloor" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="ParkingLotFloor_Lotid" not-null="true" />
             </key>
             <one-to-many class="hibernate.Parkinglotfloor" />
         </set>
-        <set name="rentforms" table="rentform" inverse="true" lazy="true" fetch="select">
+        <set name="rentforms" table="rentform" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="RentForm_ParkingLotid" not-null="true" />
             </key>

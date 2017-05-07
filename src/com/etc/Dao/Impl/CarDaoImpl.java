@@ -17,8 +17,9 @@ public class CarDaoImpl extends BaseDaoImpl<Car> implements CarDao{
 		List<Car> list = loadList(where, userID,Car_Platenum);
 		if (list.isEmpty()) {
 			return null;
+		}else{
+			return list.get(0);
 		}
-		return list.get(0);
 	}
 
 	//根据用户id和车牌号添加车对象????????????????????

@@ -1,5 +1,5 @@
 package hibernate;
-// Generated 2017-4-26 14:48:25 by Hibernate Tools 3.5.0.Final
+// Generated 2017-5-7 13:38:56 by Hibernate Tools 3.5.0.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,17 +11,23 @@ public class Administrator implements java.io.Serializable {
 
 	private int administratorId;
 	private Worker worker;
+	private String administratorUsername;
+	private String administratorPassword;
 	private Set strategies = new HashSet(0);
 
 	public Administrator() {
 	}
 
-	public Administrator(Worker worker) {
+	public Administrator(Worker worker, String administratorUsername, String administratorPassword) {
 		this.worker = worker;
+		this.administratorUsername = administratorUsername;
+		this.administratorPassword = administratorPassword;
 	}
 
-	public Administrator(Worker worker, Set strategies) {
+	public Administrator(Worker worker, String administratorUsername, String administratorPassword, Set strategies) {
 		this.worker = worker;
+		this.administratorUsername = administratorUsername;
+		this.administratorPassword = administratorPassword;
 		this.strategies = strategies;
 	}
 
@@ -39,6 +45,22 @@ public class Administrator implements java.io.Serializable {
 
 	public void setWorker(Worker worker) {
 		this.worker = worker;
+	}
+
+	public String getAdministratorUsername() {
+		return this.administratorUsername;
+	}
+
+	public void setAdministratorUsername(String administratorUsername) {
+		this.administratorUsername = administratorUsername;
+	}
+
+	public String getAdministratorPassword() {
+		return this.administratorPassword;
+	}
+
+	public void setAdministratorPassword(String administratorPassword) {
+		this.administratorPassword = administratorPassword;
 	}
 
 	public Set getStrategies() {
